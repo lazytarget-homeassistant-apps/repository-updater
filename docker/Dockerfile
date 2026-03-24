@@ -16,12 +16,12 @@ ENTRYPOINT ["repository-updater"]
 
 # Labels
 LABEL \
-    maintainer="Franck Nijhof <opensource@frenck.dev>" \
+    maintainer="LazyTarget <peter@peteraslund.me>" \
     org.opencontainers.image.title="Repository Updater" \
     org.opencontainers.image.description="Tool for automatically updating Home Assistant app repositories." \
-    org.opencontainers.image.vendor="Home Assistant Community Apps" \
-    org.opencontainers.image.authors="Franck Nijhof <opensource@frenck.dev>" \
+    org.opencontainers.image.vendor="LazyTarget's Home Assistant Apps" \
+    org.opencontainers.image.authors="LazyTarget <peter@peteraslund.me>" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.url="https://frenck.dev/home-assistant-apps" \
-    org.opencontainers.image.source="https://github.com/hassio-addons/repository-updater" \
-    org.opencontainers.image.documentation="https://github.com/hassio-addons/repository-updater/blob/main/README.md"
+    org.opencontainers.image.url="https://github.com/lazytarget-homeassistant-apps" \
+    org.opencontainers.image.source="https://github.com/lazytarget-homeassistant-apps/repository-updater" \
+    org.opencontainers.image.documentation="https://github.com/lazytarget-homeassistant-apps/repository-updater/blob/main/README.md"

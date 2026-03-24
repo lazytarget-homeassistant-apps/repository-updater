@@ -1,7 +1,7 @@
 ---
-name: "Home Assistant Community Apps Repository Updater"
+name: "LazyTarget's Home Assistant Apps Repository Updater"
 description: Tool for updating Home Assistant Apps repositories.
-author: frenck
+author: lazytarget
 
 branding:
   color: red
@@ -12,7 +12,7 @@ inputs:
     description: GitHub token that is allowed to write/commit to the target repo
     required: true
   repository:
-    description: The app repository to update (e.g., frenck/repository)
+    description: The app repository to update (e.g., lazytarget/repository)
     required: false
   app:
     description: Slug of the app to update the repository for

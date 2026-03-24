@@ -39,7 +39,7 @@ from .repository import Repository
 @click.option("--force", is_flag=True, help="Force an update of the app repository")
 @click.version_option(APP_VERSION, prog_name=APP_FULL_NAME)
 def repository_updater(token, repository, app, force):
-    """Home Assistant Community Apps Repository Updater."""
+    """LazyTarget's Home Assistant Apps Repository Updater."""
     click.echo(crayons.blue(APP_FULL_NAME, bold=True))
     click.echo(crayons.blue("-" * 51, bold=True))
     github = GitHub(token)
