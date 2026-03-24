@@ -65,6 +65,7 @@ class App:
         app_target: str,
         channel: str,
         updating: bool,
+        trigger_version: str | None = None,
     ):
         """Initialize a new Home Assistant app object."""
         self.github = github
@@ -87,6 +88,12 @@ class App:
 
         self.__load_current_info()
         if self.updating:
+            if channel == CHANNEL_EDGE:
+                if trigger_version:
+                    # Checkout the commit/ref that triggered the update
+                    click.echo(f"Checking out triggered version {trigger_version}...")
+                    self.app_repository.checkout(trigger_version)
+
             self.__load_latest_info(channel)
             if self.needs_update(False):
                 click.echo(
