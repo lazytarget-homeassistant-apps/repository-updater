@@ -17,6 +17,9 @@ elif [[ -n "${INPUT_ADDON:-}" ]]; then
   options+=(--app "${INPUT_ADDON}")
 fi
 
+[[ -n "${INPUT_TRIGGER_REF:-}" ]] \
+  && options+=(--trigger-ref "${INPUT_TRIGGER_REF}")
+
 [[ "${INPUT_FORCE,,}" = "true" ]] \
   && options+=(--force)
 
