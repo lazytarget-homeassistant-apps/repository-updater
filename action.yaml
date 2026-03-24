@@ -14,6 +14,9 @@ inputs:
   repository:
     description: The app repository to update (e.g., lazytarget/repository)
     required: false
+  trigger-ref:
+    description: The ref of the branch or commit_id that caused the deploy of the app (e.g., edge or fbd6282)
+    required: false
   app:
     description: Slug of the app to update the repository for
     required: false
