@@ -210,6 +210,8 @@ class App:
 
         if channel == CHANNEL_EDGE:
             last_commit = self.app_repository.get_commits()[0]
+            click.echo('Last commit: %s' % (last_commit.sha if last_commit else "None"))
+            click.echo('Latest commit: %s' % (self.latest_commit.sha if self.latest_commit else "None"))
             if not self.latest_commit or last_commit.sha != self.latest_commit.sha:
                 self.latest_version = last_commit.sha[:7]
                 self.latest_commit = last_commit
