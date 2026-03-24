@@ -225,7 +225,7 @@ class App:
                 self.latest_version = last_commit.sha[:7]
                 self.latest_commit = last_commit
                 self.latest_is_release = False
-                click.echo('Setting "latest_version": %s', self.latest_version)
+                click.echo('Setting "latest_version": %s' % (self.latest_version))
 
         config_files = ["config.json", "config.yaml", "config.yml"]
         # Ensure existing filename is at the start of the list
