@@ -143,6 +143,11 @@ class Repository:
         for target, app_config in apps_config.items():
             click.echo(crayons.cyan("-" * 50, bold=True))
             click.echo(crayons.cyan(f"Loading app {target}"))
+            updating = (
+                not app
+                or app_config["repository"] == app
+                or target == app
+            )
             self.apps.append(
                 App(
                     self.github,
@@ -152,12 +157,8 @@ class Repository:
                     self.github.get_repo(app_config["repository"]),
                     app_config["target"],
                     self.channel,
-                    (
-                        not app
-                        or app_config["repository"] == app
-                        or target == app
-                    ),
-                    trigger_ref=self.trigger_ref,
+                    updating,
+                    trigger_ref=self.trigger_ref if updating else None,
                 )
             )
         click.echo(crayons.cyan("-" * 50, bold=True))
