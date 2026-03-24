@@ -209,6 +209,7 @@ class App:
             self.latest_commit = self.app_repository.get_commit(ref.object.sha)
 
         if channel == CHANNEL_EDGE:
+            click.echo('Repo status: %s' % self.app_repository.git.status())
             last_commit = self.app_repository.get_commits()[0]
             click.echo('Last commit: %s' % (last_commit.sha if last_commit else "None"))
             click.echo('Latest commit: %s' % (self.latest_commit.sha if self.latest_commit else "None"))
