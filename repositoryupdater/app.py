@@ -214,7 +214,6 @@ class App:
                 click.echo('Latest release: %s (%s)' % (self.latest_release.tag_name, self.latest_commit.sha[:7]))
 
         if channel == CHANNEL_EDGE:
-            click.echo('Latest commit (tag/release): %s' % (self.latest_commit.sha if self.latest_commit else "None"))
             last_commit = None
             if self.trigger_sha:
                 # Checkout the commit/ref that triggered the update
