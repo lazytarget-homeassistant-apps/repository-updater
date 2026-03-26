@@ -1,4 +1,4 @@
-# Home Assistant Community Apps Repository Updater
+# LazyTarget's Home Assistant Apps Repository Updater
 
 [![PyPi Release][pypi-shield]][pypi]
 [![GitHub Activity][commits-shield]][commits]
@@ -15,7 +15,7 @@
 Reads remote app repositories, determines versions and generates
 changelogs to update the app repository fully automated.
 
-Mainly used by the Home Assistant Community Apps project.
+Mainly used by LazyTarget's Home Assistant Apps.
 
 Please note, this program cannot be used with the general documented
 Home Assistant app repository approach and only works in the setup where
@@ -36,7 +36,7 @@ The Repository Updater is a pretty simple, straightforward CLI tool.
 ```txt
 Usage: repository-updater [OPTIONS]
 
-  Home Assistant Community Apps Repository Updater.
+  LazyTarget's Home Assistant Apps Repository Updater.
 
 Options:
   --token <TOKEN>                 GitHub access token
@@ -314,22 +314,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/repository-updater.svg
-[commits]: https://github.com/hassio-addons/repository-updater/commits/main
-[contributors]: https://github.com/hassio-addons/repository-updater/graphs/contributors
+[commits-shield]: https://img.shields.io/github/commit-activity/y/lazytarget-homeassistant-apps/repository-updater.svg
+[commits]: https://github.com/lazytarget-homeassistant-apps/repository-updater/commits/main
+[contributors]: https://github.com/lazytarget-homeassistant-apps/repository-updater/graphs/contributors
 [discord-shield]: https://img.shields.io/discord/330944238910963714.svg
 [discord]: https://discord.gg/c5DvZ4e
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io?u=frenck
-[frenck]: https://github.com/frenck
-[issue]: https://github.com/hassio-addons/repository-updater/issues
-[license-shield]: https://img.shields.io/github/license/hassio-addons/repository-updater.svg
+[lazytarget]: https://github.com/lazytarget
+[issue]: https://github.com/lazytarget-homeassistant-apps/repository-updater/issues
+[license-shield]: https://img.shields.io/github/license/lazytarget-homeassistant-apps/repository-updater.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2026.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
-[pypi-shield]: https://img.shields.io/pypi/v/repository-updater.svg
-[pypi]: https://pypi.org/project/repository-updater
 [reddit]: https://reddit.com/r/homeassistant
-[releases]: https://github.com/hassio-addons/repository-updater/releases
-[repository]: https://github.com/hassio-addons/repository
+[releases]: https://github.com/lazytarget-homeassistant-apps/repository-updater/releases
+[repository]: https://github.com/lazytarget-homeassistant-apps/repository
 [semver]: http://semver.org/spec/v2.0.0.html
 [token]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
