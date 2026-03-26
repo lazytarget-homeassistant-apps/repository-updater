@@ -36,9 +36,14 @@ from .repository import Repository
     help="Update a single/specific app",
     metavar="<TARGET>",
 )
+@click.option(
+    "--sha",
+    help="The commit_id that triggered the deploy of the app (e.g., fbd6282)",
+    metavar="<SHA>",
+)
 @click.option("--force", is_flag=True, help="Force an update of the app repository")
 @click.version_option(APP_VERSION, prog_name=APP_FULL_NAME)
-def repository_updater(token, repository, app, force):
+def repository_updater(token, repository, app, sha, force):
     """LazyTarget's Home Assistant Apps Repository Updater."""
     click.echo(crayons.blue(APP_FULL_NAME, bold=True))
     click.echo(crayons.blue("-" * 51, bold=True))
@@ -47,7 +52,7 @@ def repository_updater(token, repository, app, force):
         "Authenticated with GitHub as %s"
         % crayons.yellow(github.get_user().name, bold=True)
     )
-    repository = Repository(github, repository, app, force)
+    repository = Repository(github, repository, sha, app, force)
     repository.update()
     repository.cleanup()
 

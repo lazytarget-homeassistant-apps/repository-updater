@@ -14,6 +14,9 @@ inputs:
   repository:
     description: The app repository to update (e.g., lazytarget/repository)
     required: false
+  sha:
+    description: The commit_id that the deploy of the app (e.g., fbd6282)
+    required: false
   app:
     description: Slug of the app to update the repository for
     required: false

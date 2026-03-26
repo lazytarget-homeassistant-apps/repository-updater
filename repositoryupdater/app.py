@@ -46,6 +46,7 @@ class App:
     latest_release: GitRelease
     latest_is_release: bool
     latest_commit: Commit
+    trigger_sha: str | None = None
     archs: list
     name: str
     description: str
@@ -65,6 +66,7 @@ class App:
         app_target: str,
         channel: str,
         updating: bool,
+        trigger_sha: str | None = None,
     ):
         """Initialize a new Home Assistant app object."""
         self.github = github
@@ -80,6 +82,7 @@ class App:
         self.current_version = None
         self.latest_release = None
         self.latest_commit = None
+        self.trigger_sha = trigger_sha
 
         click.echo(
             "Loading app information from: %s" % self.app_repository.html_url
@@ -207,13 +210,26 @@ class App:
                 "tags/" + self.latest_release.tag_name
             )
             self.latest_commit = self.app_repository.get_commit(ref.object.sha)
+            if self.latest_commit:
+                click.echo('Latest release: %s (%s)' % (self.latest_release.tag_name, self.latest_commit.sha[:7]))
 
         if channel == CHANNEL_EDGE:
-            last_commit = self.app_repository.get_commits()[0]
+            click.echo('Latest commit (tag/release): %s' % (self.latest_commit.sha if self.latest_commit else "None"))
+            last_commit = None
+            if self.trigger_sha:
+                # Checkout the commit/ref that triggered the update
+                last_commit = self.app_repository.get_commit(self.trigger_sha)
+                click.echo('Trigger commit: %s' % (last_commit.sha if last_commit else ''))
+            else:
+                last_commit = self.app_repository.get_commits()[0]
+                click.echo('Last commit: %s' % (last_commit.sha if last_commit else ''))
+
             if not self.latest_commit or last_commit.sha != self.latest_commit.sha:
                 self.latest_version = last_commit.sha[:7]
                 self.latest_commit = last_commit
                 self.latest_is_release = False
+            else:
+                click.echo("No new commit found since latest release, keeping version at %s" % self.latest_version)
 
         config_files = ["config.json", "config.yaml", "config.yml"]
         # Ensure existing filename is at the start of the list

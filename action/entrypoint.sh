@@ -17,6 +17,9 @@ elif [[ -n "${INPUT_ADDON:-}" ]]; then
   options+=(--app "${INPUT_ADDON}")
 fi
 
+[[ -n "${INPUT_SHA:-}" ]] \
+  && options+=(--sha "${INPUT_SHA}")
+
 [[ "${INPUT_FORCE,,}" = "true" ]] \
   && options+=(--force)
 
