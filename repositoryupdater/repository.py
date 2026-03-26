@@ -29,16 +29,16 @@ class Repository:
     apps: List[App]
     github: GitHub
     github_repository: GitHubRepository
-    trigger_ref: str
+    trigger_sha: str
     git_repo: Repo
     force: bool
     channel: str
 
-    def __init__(self, github: GitHub, repository: str, trigger_ref: str, app: str, force: bool):
+    def __init__(self, github: GitHub, repository: str, trigger_sha: str, app: str, force: bool):
         """Initialize new app Repository object."""
         self.github = github
         self.force = force
-        self.trigger_ref = trigger_ref
+        self.trigger_sha = trigger_sha
         self.apps = []
 
         click.echo(
@@ -158,7 +158,7 @@ class Repository:
                     app_config["target"],
                     self.channel,
                     updating,
-                    trigger_ref=self.trigger_ref if updating else None,
+                    trigger_sha=self.trigger_sha if updating else None,
                 )
             )
         click.echo(crayons.cyan("-" * 50, bold=True))
