@@ -215,6 +215,7 @@ class App:
 
         if channel == CHANNEL_EDGE:
             last_commit = None
+            click.echo('Trigger sha: %s' % (self.trigger_sha if self.trigger_sha else ''))
             if self.trigger_sha:
                 # Checkout the commit/ref that triggered the update
                 last_commit = self.app_repository.get_commit(self.trigger_sha)
