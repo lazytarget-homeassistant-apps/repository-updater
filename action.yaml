@@ -17,6 +17,9 @@ inputs:
   sha:
     description: The commit_id that the deploy of the app (e.g., fbd6282)
     required: false
+  name:
+    description: Updates the app name if set. Handy for setting App suffixes like "Edge" or "Beta".
+    required: false
   app:
     description: Slug of the app to update the repository for
     required: false

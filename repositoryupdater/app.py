@@ -67,6 +67,7 @@ class App:
         channel: str,
         updating: bool,
         trigger_sha: str | None = None,
+        trigger_app_name: str | None = None,
     ):
         """Initialize a new Home Assistant app object."""
         self.github = github
@@ -83,6 +84,7 @@ class App:
         self.latest_release = None
         self.latest_commit = None
         self.trigger_sha = trigger_sha
+        self.trigger_app_name = trigger_app_name if trigger_app_name else None
 
         click.echo(
             "Loading app information from: %s" % self.app_repository.html_url
@@ -320,6 +322,10 @@ class App:
                 json.load(f) if config_file.endswith(".json") else yaml.safe_load(f)
             )
 
+        if self.trigger_app_name:
+            click.echo(crayons.yellow(f'Updating app name "{config["name"]}" to "{self.trigger_app_name}"'))
+            config["name"] = self.trigger_app_name
+        config["name"] = self.name
         config["version"] = self.current_version
         config["image"] = self.image
 
