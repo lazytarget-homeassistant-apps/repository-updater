@@ -266,9 +266,6 @@ class App:
         )
 
         self.name = latest_config["name"]
-        if self.trigger_app_name:
-            click.echo(crayons.yellow(f'Updating app name "{self.name}" to "{self.trigger_app_name}"'))
-            self.name = self.trigger_app_name
         self.description = latest_config["description"]
         self.slug = latest_config["slug"]
         self.url = latest_config["url"]
@@ -325,6 +322,8 @@ class App:
             )
 
         config["name"] = self.name
+        if self.trigger_app_name:
+            config["name"] = self.trigger_app_name
         config["version"] = self.current_version
         config["image"] = self.image
 
