@@ -217,14 +217,13 @@ class App:
 
         if channel == CHANNEL_EDGE:
             last_commit = None
-            click.echo('Trigger sha: %s' % (self.trigger_sha if self.trigger_sha else ''))
             if self.trigger_sha:
                 # Checkout the commit/ref that triggered the update
                 last_commit = self.app_repository.get_commit(self.trigger_sha)
-                click.echo('Trigger commit: %s' % (last_commit.sha if last_commit else ''))
+                click.echo('Trigger commit: %s' % (last_commit.sha[:7] if last_commit else ''))
             else:
                 last_commit = self.app_repository.get_commits()[0]
-                click.echo('Last commit: %s' % (last_commit.sha if last_commit else ''))
+                click.echo('Last commit: %s' % (last_commit.sha[:7] if last_commit else ''))
 
             if not self.latest_commit or last_commit.sha != self.latest_commit.sha:
                 self.latest_version = last_commit.sha[:7]
@@ -267,6 +266,9 @@ class App:
         )
 
         self.name = latest_config["name"]
+        if self.trigger_app_name:
+            click.echo(crayons.yellow(f'Updating app name "{self.name}" to "{self.trigger_app_name}"'))
+            self.name = self.trigger_app_name
         self.description = latest_config["description"]
         self.slug = latest_config["slug"]
         self.url = latest_config["url"]
@@ -322,9 +324,6 @@ class App:
                 json.load(f) if config_file.endswith(".json") else yaml.safe_load(f)
             )
 
-        if self.trigger_app_name:
-            click.echo(crayons.yellow(f'Updating app name "{config["name"]}" to "{self.trigger_app_name}"'))
-            config["name"] = self.trigger_app_name
         config["name"] = self.name
         config["version"] = self.current_version
         config["image"] = self.image
