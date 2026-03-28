@@ -67,6 +67,7 @@ class App:
         channel: str,
         updating: bool,
         trigger_sha: str | None = None,
+        trigger_app_name: str | None = None,
     ):
         """Initialize a new Home Assistant app object."""
         self.github = github
@@ -83,6 +84,7 @@ class App:
         self.latest_release = None
         self.latest_commit = None
         self.trigger_sha = trigger_sha
+        self.trigger_app_name = trigger_app_name if trigger_app_name else None
 
         click.echo(
             "Loading app information from: %s" % self.app_repository.html_url
@@ -218,10 +220,10 @@ class App:
             if self.trigger_sha:
                 # Checkout the commit/ref that triggered the update
                 last_commit = self.app_repository.get_commit(self.trigger_sha)
-                click.echo('Trigger commit: %s' % (last_commit.sha if last_commit else ''))
+                click.echo('Trigger commit: %s' % (last_commit.sha[:7] if last_commit else ''))
             else:
                 last_commit = self.app_repository.get_commits()[0]
-                click.echo('Last commit: %s' % (last_commit.sha if last_commit else ''))
+                click.echo('Last commit: %s' % (last_commit.sha[:7] if last_commit else ''))
 
             if not self.latest_commit or last_commit.sha != self.latest_commit.sha:
                 self.latest_version = last_commit.sha[:7]
@@ -319,6 +321,9 @@ class App:
                 json.load(f) if config_file.endswith(".json") else yaml.safe_load(f)
             )
 
+        config["name"] = self.name
+        if self.trigger_app_name:
+            config["name"] = self.trigger_app_name
         config["version"] = self.current_version
         config["image"] = self.image
 
